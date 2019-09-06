@@ -1,5 +1,5 @@
 // [[ Function Declarations ]] 
 
-function updateTitle() {
-	document.title = "title change"
+function updateTitle(newTitle) {
+	document.title = newTitle
 }
