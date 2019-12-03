@@ -156,7 +156,7 @@ do
 	
 	local inputBox = instance.new("TextBox", {
 		TextScaled = true,
-		Text = "",
+		Text = "[Status] Ready!",
 		BorderSizePixel = 2,
 		Font = Enum.Font.Code,
 		BackgroundColor3 = Color3.new(1, 1, 1),
@@ -185,7 +185,7 @@ do
             active = false
             debris:AddItem(screenGui, 2)
 
-			return "Closing Shortly."
+			return "[Status] Closing."
         end
     )
 
@@ -237,13 +237,13 @@ do
                         onGoingLocate = false
                     end)()
                     
-                    return "Attempting To Locate!"
+                    return "[Status] Attempting To Locate!"
                 end
                 
-                return "Error [No Root/Humanoid Found]"
+                return "[Error] No Root/Humanoid Found"
             end
             
-            return "Error [No Player Found]"
+            return "[Error] No Player Found"
         end
     )
 
@@ -275,13 +275,13 @@ do
                 if clientRoot and targetRoot then
                     clientRoot.CFrame = targetRoot.CFrame
                     
-                    return "Teleported to target!"
+                    return "[Status] Teleported to target!"
                 end
                 
-                return "Error [No Root Found]"
+                return "[Error] No Root Found"
             end
             
-            return "Error [No Player Found]"
+            return "[Error] No Player Found"
         end
 	)
 end
