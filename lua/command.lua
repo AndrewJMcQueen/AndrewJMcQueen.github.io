@@ -2,12 +2,20 @@
 
 local players = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
+local debris = game:GetService("Debris")
+local pathFindingService = game:GetService("PathfindingService")
 
 -- [[ Client Declarations ]] --
 
 local client = players.LocalPlayer
 
 -- [[ Variable Declarations ]] --
+
+--// UI Cache
+
+local screenGui
+
+--// Command Related
 
 local commands = {}
 local active = true
@@ -139,7 +147,7 @@ end
 do
 	--// Construct Input Interface
 	
-	local screenGui = instance.new("ScreenGui", {
+	screenGui = instance.new("ScreenGui", {
 		Parent = coreGui
 	})
 	
@@ -172,6 +180,62 @@ do
         }, 
         function()
             active = false
+            debris:AddItem(screenGui, 2)
+
+			return "Closing Shortly."
+        end
+    )
+
+
+    command.new(
+        {
+            "locate",
+            "walk",
+            "path"
+        },
+        function(targetName)
+            local target = getPlayerFromPartialUsername(targetName)
+
+            if targetName == "$random" then
+                local playersIngame = players:GetPlayers()
+                local randomIndex = math.random(1, #playersIngame)
+                local randomPlayer = playersIngame[randomIndex]
+
+                target = randomPlayer
+            end
+            
+            if target then
+                local clientCharacter = client.Character
+                local targetCharacter = target.Character
+                
+                local clientHumanoid = clientCharacter:FindFirstChild("Humanoid")
+
+                local clientRoot = clientCharacter:FindFirstChild("HumanoidRootPart")
+                local targetRoot = targetCharacter:FindFirstChild("HumanoidRootPart")
+                
+                if clientHumanoid and clientRoot and targetRoot then
+                    local path = pathFindingService:CreatePath()
+                    
+                    path:ComputeAsync(clientRoot.Position, targetRoot.Position)
+
+                    local waypoints = path:GetWaypoints()
+
+                    coroutine.wrap(function()
+                        for i, waypoint in pairs(waypoints) do
+                            repeat
+                                clientHumanoid:MoveTo(waypoint.Position)
+                            until
+                                clientHumanoid.MoveToFinished:Wait()
+                        end
+                    end)()
+                    
+                    return "Attempting To Locate!"
+                end
+                
+                return "Error [No Root/Humanoid Found]"
+            end
+            
+            return "Error [No Player Found]"
         end
     )
 
