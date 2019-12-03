@@ -18,7 +18,10 @@ local screenGui
 --// Command Related
 
 local commands = {}
+
 local active = true
+local onGoingLocate = false
+
 local config = {
 	prefix = ">",
 	separator = " "
@@ -194,6 +197,7 @@ do
             "path"
         },
         function(targetName)
+            if onGoingLocate then return "Error [Currently Locating]" end
             local target = getPlayerFromPartialUsername(targetName)
 
             if targetName == "$random" then
@@ -221,12 +225,16 @@ do
                     local waypoints = path:GetWaypoints()
 
                     coroutine.wrap(function()
+                        onGoingLocate = true
+
                         for i, waypoint in pairs(waypoints) do
                             repeat
                                 clientHumanoid:MoveTo(waypoint.Position)
                             until
                                 clientHumanoid.MoveToFinished:Wait()
                         end
+
+                        onGoingLocate = false
                     end)()
                     
                     return "Attempting To Locate!"
