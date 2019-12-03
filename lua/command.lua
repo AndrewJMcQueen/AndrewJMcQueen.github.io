@@ -280,7 +280,7 @@ do
                 if clientRoot and targetRoot then
                     clientRoot.CFrame = targetRoot.CFrame
                     
-                    return "[Status] Teleported to target."
+                    return "[Status] Teleported To Target."
                 end
                 
                 return "[Error] No Root Found!"
