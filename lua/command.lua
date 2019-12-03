@@ -156,7 +156,7 @@ do
 	
 	local inputBox = instance.new("TextBox", {
 		TextScaled = true,
-		Text = "[Status] Ready!",
+		Text = "[Status] Ready.",
 		BorderSizePixel = 2,
 		Font = Enum.Font.Code,
 		BackgroundColor3 = Color3.new(1, 1, 1),
@@ -218,11 +218,16 @@ do
                 local targetRoot = targetCharacter:FindFirstChild("HumanoidRootPart")
                 
                 if clientHumanoid and clientRoot and targetRoot then
-                    local path = pathFindingService:CreatePath()
+                    local path = pathFindingService:CreatePath({AgentCanJump = false})
                     
                     path:ComputeAsync(clientRoot.Position, targetRoot.Position)
 
                     local waypoints = path:GetWaypoints()
+                    local start = tick()
+
+                    if #waypoints == 0 then
+                        return "[Error] No Path"
+                    end
 
                     coroutine.wrap(function()
                         onGoingLocate = true
@@ -231,19 +236,19 @@ do
                             repeat
                                 clientHumanoid:MoveTo(waypoint.Position)
                             until
-                                clientHumanoid.MoveToFinished:Wait()
+                                clientHumanoid.MoveToFinished:Wait() or ((tick() - start) > 100)
                         end
 
                         onGoingLocate = false
                     end)()
                     
-                    return "[Status] Attempting To Locate!"
+                    return "[Status] Attempting To Locate."
                 end
                 
-                return "[Error] No Root/Humanoid Found"
+                return "[Error] No Root/Humanoid Found!"
             end
             
-            return "[Error] No Player Found"
+            return "[Error] No Player Found!"
         end
     )
 
@@ -275,13 +280,13 @@ do
                 if clientRoot and targetRoot then
                     clientRoot.CFrame = targetRoot.CFrame
                     
-                    return "[Status] Teleported to target!"
+                    return "[Status] Teleported to target."
                 end
                 
-                return "[Error] No Root Found"
+                return "[Error] No Root Found!"
             end
             
-            return "[Error] No Player Found"
+            return "[Error] No Player Found!"
         end
 	)
 end
