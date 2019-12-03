@@ -10,6 +10,7 @@ local client = players.LocalPlayer
 -- [[ Variable Declarations ]] --
 
 local commands = {}
+local active = true
 local config = {
 	prefix = ">",
 	separator = " "
@@ -19,7 +20,8 @@ local config = {
 
 local function runCommand(inputBox)
 	return function(pressedEnter)
-		if not pressedEnter then return end
+        if not pressedEnter then return end
+        if not active then return end
 		
 		local currentPrefix = config.prefix
 		local currentSeparator = config.separator
@@ -158,7 +160,21 @@ end
 
 do
 	--// Construct Commands
-	
+
+    command.new(
+        {
+            "panic",
+            "deactivate",
+            "stop",
+            "exit",
+            "quit",
+            "bye"
+        }, 
+        function()
+            active = false
+        end
+    )
+
 	command.new(
 		{
 			"teleport",
@@ -166,26 +182,34 @@ do
 			"goto",
 			"to"
 		}, 
-		function(targetName)
-			local target = getPlayerFromPartialUsername(targetName)
-			
-			if target then
-				local clientCharacter = client.Character
-				local targetCharacter = target.Character
-				
-				local clientRoot = clientCharacter:FindFirstChild("HumanoidRootPart")
-				local targetRoot = targetCharacter:FindFirstChild("HumanoidRootPart")
-				
-				if clientRoot and targetRoot then
-					clientRoot.CFrame = targetRoot.CFrame
-					
-					return "Teleported to target!"
-				end
-				
-				return "Error [No Root Found]"
-			end
-			
-			return "Error [No Player Found]"
-		end
+        function(targetName)
+            local target = getPlayerFromPartialUsername(targetName)
+
+            if targetName == "$random" then
+                local playersIngame = players:GetPlayers()
+                local randomIndex = math.random(1, #playersIngame)
+                local randomPlayer = playersIngame[randomIndex]
+
+                target = randomPlayer
+            end
+            
+            if target then
+                local clientCharacter = client.Character
+                local targetCharacter = target.Character
+                
+                local clientRoot = clientCharacter:FindFirstChild("HumanoidRootPart")
+                local targetRoot = targetCharacter:FindFirstChild("HumanoidRootPart")
+                
+                if clientRoot and targetRoot then
+                    clientRoot.CFrame = targetRoot.CFrame
+                    
+                    return "Teleported to target!"
+                end
+                
+                return "Error [No Root Found]"
+            end
+            
+            return "Error [No Player Found]"
+        end
 	)
 end
