@@ -6,8 +6,8 @@ const referenceDate = new Date()
 // [[ Function Declarations ]] 
 
 function currentColor() {
-	const current = currentDate.getTime()
-	const reference = referenceDate.getTime()
+	const current = currentDate.getTime() / 1000
+	const reference = referenceDate.getTime() / 1000
 	
 	const difference = current - reference
 	
