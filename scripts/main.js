@@ -1,13 +1,32 @@
 // Variable Declarations
 
-const date = new Date()
+const currentDate = new Date()
+const referenceDate = new Date()
 
 // [[ Function Declarations ]] 
 
 function currentColor() {
-	const current = date.getTime()
+	const current = currentDate.getTime()
+	const reference = referenceDate.getTime()
 	
-	alert(current)
+	const difference = current - reference
+	
+	alert(difference)
 }
 
-setInterval(currentColor, 1000)
+// [[ Init ]]
+
+{
+	// Setup Date
+	
+	referenceDate.setHours(0)
+	referenceDate.setMinutes(0)
+	referenceDate.setSeconds(0)
+	referenceDate.setMilliseconds(0)
+}
+
+{
+	// Setup Clock
+	
+	setInterval(currentColor, 1000)
+}
