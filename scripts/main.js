@@ -5,7 +5,7 @@ const date = new Date()
 // [[ Function Declarations ]] 
 
 function currentColor() {
-	const current = date.now()
+	const current = date.getTime()
 	
 	alert(current)
 }
