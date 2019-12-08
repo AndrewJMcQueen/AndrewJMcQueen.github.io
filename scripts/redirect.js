@@ -1,1 +1,1 @@
-window.location = "https://www.AndrewJMcQueen.github.io/color.html"
+window.location = "https://www.AndrewJMcQueen.github.io/pages/color.html"
