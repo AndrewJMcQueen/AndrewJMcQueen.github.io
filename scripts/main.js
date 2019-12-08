@@ -1,33 +1,33 @@
-// Variable Declarations
+// [[ Variable Declarations ]]
 
-const currentDate = new Date()
-const referenceDate = new Date()
+let body = document.body
+let bodyStyle = body.style
 
 // [[ Function Declarations ]] 
 
 function currentColor() {
+	const currentDate = new Date()
+	const referenceDate = new Date()
+
+	referenceDate.setHours(0)
+	referenceDate.setMinutes(0)
+	referenceDate.setSeconds(0)
+    
 	const current = currentDate.getTime()
 	const reference = referenceDate.getTime()
 	
-	const differenceMilliseconds = (current - reference) / 1000
-	const differenceSeconds = Math.floor(differenceMilliseconds)
+	const differenceMilliseconds = (current - reference)
+	const differenceSeconds = differenceMilliseconds / 1000
 	
-	alert(difference)
+	const color = differenceSeconds.toString(16)
+    
+	bodyStyle.backgroundColor = color
 }
 
 // [[ Init ]]
 
 {
-	// Setup Date
-	
-	referenceDate.setHours(0)
-	referenceDate.setMinutes(0)
-	referenceDate.setSeconds(0)
-	referenceDate.setMilliseconds(0)
-}
-
-{
 	// Setup Clock
-	
-	setInterval(currentColor, 1000)
+    
+	currentColor()
 }
