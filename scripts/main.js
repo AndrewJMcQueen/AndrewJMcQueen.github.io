@@ -3,6 +3,8 @@
 let body = document.body
 let bodyStyle = body.style
 
+let clockText = document.getElementById("clock")
+
 // [[ Function Declarations ]] 
 
 function currentColor() {
@@ -22,6 +24,7 @@ function currentColor() {
 	const color = differenceSeconds.toString(16)
     
 	bodyStyle.backgroundColor = color
+	clockText.innerHTML = "#" + color
 }
 
 // [[ Init ]]
@@ -30,4 +33,5 @@ function currentColor() {
 	// Setup Clock
     
 	currentColor()
+	setInterval(currentColor, 1000)
 }
