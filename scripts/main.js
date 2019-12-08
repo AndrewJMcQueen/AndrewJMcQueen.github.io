@@ -18,8 +18,8 @@ function currentColor() {
 	const current = currentDate.getTime()
 	const reference = referenceDate.getTime()
 	
-	const differenceMilliseconds = (current - reference)
-	const differenceSeconds = differenceMilliseconds / 1000
+	const differenceMilliseconds = current - reference
+	const differenceSeconds = Math.floor(differenceMilliseconds / 1000)
 	
 	const color = differenceSeconds.toString(16)
     
