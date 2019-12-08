@@ -24,7 +24,9 @@ function currentColor() {
 	const color = differenceSeconds.toString(16)
     
 	bodyStyle.backgroundColor = color
-	clockText.innerHTML = "#" + color
+
+	clockText.innerHTML = "0x" + color
+	document.title = "0x" + color
 }
 
 // [[ Init ]]
