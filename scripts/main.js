@@ -1,5 +1,13 @@
+// Variable Declarations
+
+const date = new Date()
+
 // [[ Function Declarations ]] 
 
-function updateTitle(newTitle) {
-	document.title = newTitle
+function currentColor() {
+	const current = date.now()
+	
+	alert(current)
 }
+
+setInterval(currentColor, 1000)
