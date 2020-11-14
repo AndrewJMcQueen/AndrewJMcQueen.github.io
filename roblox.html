@@ -68,8 +68,8 @@ for (let i = 0; i < subdirectories.length; i++) {
     let directory = `{subdirectories[i].roblox.com/docs}`
     let element = document.createElement("a")
     
-    a.href = directory
-    a.innerHTML = directory
+    element.href = directory
+    element.innerHTML = directory
     document.body.appendChild(element)
 }
 
