@@ -65,12 +65,14 @@ const subdirectories = [
 ]
 
 for (let i = 0; i < subdirectories.length; i++) {
-    let directory = `{subdirectories[i].roblox.com/docs}`
+    let directory = `https://${subdirectories[i]}.roblox.com/docs`
+    let container = document.createElement("p")
     let element = document.createElement("a")
     
     element.href = directory
     element.innerHTML = directory
-    document.body.appendChild(element)
+    container.appendChild(element)
+    document.body.appendChild(container)
 }
 
 </script>
