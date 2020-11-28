@@ -1,17 +1,82 @@
 <html>
-	<head>
-		<meta property = "og:title" content = "BASED?">
-		<meta property = "og:description" content = "BASED ON WHAT?">
-		<meta property = "og:image" content = "https://cdn.discordapp.com/attachments/366302008321376259/676639664450437124/84088607_1829767123820520_950114162502008832_n.png">
-		
-		<meta name = "theme-color" content = "#000000">
-                <meta name = "twitter:card" content = "summary_large_image">
-	</head>
-	
-	<body>
-		<script>
-			//window.location = "https://github.com/BasedOnWhat"
-			window.location = "ms-cxh-full://a/"
-		</script>
-	</body>
+
+<body>
+
+<script>
+
+const subdirectories = [
+    "abtesting",
+    "accountinformation",
+    "accountsettings",
+    "adconfiguration",
+    "ads",
+    "api",
+    "assetdelivery",
+    "auth",
+    "avatar",
+    "badges",
+    "billing",
+    "captcha",
+    "catalog",
+    "cdnproviders",
+    "chat",
+    "chatmoderation",
+    "clientsettings",
+    "contacts",
+    "contentstore",
+    "develop",
+    "discussions",
+    "economy",
+    "economycreatorstats",
+    "engagementpayouts",
+    "followings",
+    "friends",
+    "gameinternationalization",
+    "gamejoin",
+    "gamepasses",
+    "gamepersistence",
+    "games",
+    "groups",
+    "groupsmoderation",
+    "inventory",
+    "itemconfiguration",
+    "locale",
+    "localizationtables",
+    "metrics",
+    "notifications",
+    "points",
+    "premiumfeatures",
+    "presence",
+    "privatemessages",
+    "publish",
+    "punishments",
+    "share",
+    "textfilter",
+    "themes",
+    "thumbnails",
+    "thumbnailsresizer",
+    "trades",
+    "translationroles",
+    "translations",
+    "twostepverification",
+    "usermoderation",
+    "users",
+    "voice"
+]
+
+for (let i = 0; i < subdirectories.length; i++) {
+    let directory = `https://${subdirectories[i]}.roblox.com/docs`
+    let container = document.createElement("p")
+    let element = document.createElement("a")
+    
+    element.href = directory
+    element.innerHTML = directory
+    container.appendChild(element)
+    document.body.appendChild(container)
+}
+
+</script>
+
+</body>
+
 </html>
